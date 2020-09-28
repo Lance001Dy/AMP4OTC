@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,6 +46,9 @@ INSTALLED_APPS = [
     'django_dropbox_storage',
 ]
 
+"""
+The DRF needs to be configured accordingly here, especially necassary for datatables integration
+"""
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
@@ -90,7 +94,7 @@ WSGI_APPLICATION = 'AMP4OTC.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': BASE_DIR / 'db.postgresql',
+        'NAME': os.path.join(BASE_DIR, 'db.postgresql'),
                 
         #'USER': '<db_username>',
 
@@ -138,5 +142,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+"""
+1. Static and media url dirs to be specified.
+
+2. Dropbox storages to be configured.
+"""
 
 STATIC_URL = '/static/'
