@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse 
+from typing import NamedTuple
 
 class ProjectSpecifications(NamedTuple):
     """Specifies the details of a new project
@@ -38,7 +39,7 @@ class MiscellaneousDetails(NamedTuple):
     major_rep: str
     common_occ: str
 
-class ProjectAdministration:
+class ProjectAdministration(models.Model):
     """This class defines the project by design.
     """
     def __init__(
