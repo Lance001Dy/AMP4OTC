@@ -2,56 +2,48 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse 
+from PIL import Image
 
-class ProjectSpecifications(NamedTuple):
-    """Specifies the details of a new project
-    
-    site_name: the name of the site where cranes were inspected
-    section_name: the section of the site where cranes were inspected
-    """
-    site_name: str 
-    section_name: str
-    
-class ClientSpecifications(NamedTuple):
-    """Specifies the detals of the clinet for the project
-    
-    client: the name of the client for who's site and section cranes are inspected
-    client_rep: the name of the clients representative for the project
-    rep_pos: the position of the clinet representative
-    """
-    client: str
-    client_rep: str
-    rep_pos: str
-    
-class MiscellaneousDetails(NamedTuple):
-    """Specifies some miscellaneous details regarding the cranes operating conditions
-    
-    external_env: is the crane situated in doors or outdoors
-    corrosive_env: is the crane exposed to a corrosive environment
-    heat_env: is the crane exposed to elevated temperatures
-    major_rep: history of major repairs
-    common_occ: are there common occurances of failures and/or repairs
-    """
-    external_env: str
-    corrosive_env: str
-    heat_env: str
-    major_rep: str
-    common_occ: str
+class ClientDetails(models.Model):
+	author = models.ForeignKey(User, on_delete=models.CASCADE)
+	client = models.CharField(max_length=50)
+	client_rep = models.CharField(max_length=50)
+	client_rep_pos = models.CharField(max_length=50)
+    client_rep_email = models.EmailField(max_length=50)
+	date_posted = models.DateTimeField(default=timezone.now)
 
-class ProjectAdministration:
-    """This class defines the project by design.
-    """
-    def __init__(
-            self,
-            project_specifications: ProjectSpecifications,
-            client_specifications: ClientSpecifications,
-            miscellaneous_details: MiscellaneousDetails
-    ):
-        """
-        :param cranes_specifications: Specifications of the crane.
-        :param hoists_specifications: A list of the hoists present on the crane.
-        :param platform_heights: The different platform heights.
-        """
-        self.project_specifications = project_specifications
-        self.client_specifications = client_specifications
-        self.miscellaneous_details = miscellaneous_details
+	def __str__(self):
+		return self.client
+
+	def get_absolute_url(self):
+		return reverse('client-detail', kwargs={'pk': self.pk})
+
+class ProjectDetails(models.Model):
+	author = models.ForeignKey(User, on_delete=models.CASCADE)
+	client = models.ForeignKey('administration.ClientDetails', on_delete=models.CASCADE, related_name='ProjectDetails')
+	site = models.CharField(max_length=50)
+	section = models.CharField(max_length=50)
+	location = models.CharField(max_length=50)
+    date_posted = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return self.section
+
+	def get_absolute_url(self):
+		return reverse('project-detail', kwargs={'pk1': self.pk})
+
+class MiscellaneousDetails(models.Model):
+	author = models.ForeignKey(User, on_delete=models.CASCADE)
+	section = models.ForeignKey('administration.ProjectDetails', on_delete=models.CASCADE, related_name='MiscellaneousDetails')
+	external_env = models.CharField(max_length=50)
+	corrosive_env = models.CharField(max_length=50)
+	heat_env = models.CharField(max_length=50)
+    major_rep = models.CharField(max_length=50)
+    common_occ = models.CharField(max_length=50)
+    date_posted = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return self.external_env
+
+	def get_absolute_url(self):
+		return reverse('miscellaneous-detail', kwargs={'pk2': self.pk})
