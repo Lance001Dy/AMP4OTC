@@ -6,6 +6,7 @@ from PIL import Image
 
 #Test from Ubuntu PC
 #Test Charl
+#Test 2
 
 class Thread(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
