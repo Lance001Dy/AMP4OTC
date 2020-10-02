@@ -5,6 +5,7 @@ from django.urls import reverse
 from PIL import Image
 
 #Test from Ubuntu PC
+#Test Charl
 
 class Thread(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
