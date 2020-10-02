@@ -95,15 +95,15 @@ WSGI_APPLICATION = 'AMP4OTC.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.path.join(BASE_DIR, 'db.postgresql'),
+        'NAME': 'dbtest',
                 
-        #'USER': '<db_username>',
+         'USER': 'postgres',
 
-        #'PASSWORD': '<password>',
+         'PASSWORD': 'root',
 
-        #'HOST': '<db_hostname_or_ip>',
+         'HOST': '127.0.0.1',
 
-        #'PORT': '<db_port>',
+         'PORT': '5432',
     }
 }
 
