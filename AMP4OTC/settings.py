@@ -90,14 +90,19 @@ WSGI_APPLICATION = 'AMP4OTC.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+#   https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# 
+# How to setup a postgres database
+#   Link: https://www.tecmint.com/install-postgresql-and-pgadmin-in-ubuntu/
+# Searching or ways to fecth data form DataBase 
+#   https://www.sqlitetutorial.net/sqlite-python/sqlite-python-select/
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbtest',
+        'NAME': 'testdb',
                 
-         'USER': 'postgres',
+         'USER': 'postgre2s',
 
          'PASSWORD': 'root',
 

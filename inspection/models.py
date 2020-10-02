@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse 
 from PIL import Image
 
+#Test from Ubuntu PC
+
 class Thread(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	client = models.CharField(max_length=100)
