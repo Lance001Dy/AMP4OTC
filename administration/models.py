@@ -2,14 +2,14 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse 
-from PIL import Image
+#from PIL import Image
 
 class ClientDetails(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	client = models.CharField(max_length=50)
 	client_rep = models.CharField(max_length=50)
 	client_rep_pos = models.CharField(max_length=50)
-    client_rep_email = models.EmailField(max_length=50)
+	client_rep_email = models.EmailField(max_length=50)
 	date_posted = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
@@ -24,7 +24,7 @@ class ProjectDetails(models.Model):
 	site = models.CharField(max_length=50)
 	section = models.CharField(max_length=50)
 	location = models.CharField(max_length=50)
-    date_posted = models.DateTimeField(default=timezone.now)
+	date_posted = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
 		return self.section
@@ -38,9 +38,9 @@ class MiscellaneousDetails(models.Model):
 	external_env = models.CharField(max_length=50)
 	corrosive_env = models.CharField(max_length=50)
 	heat_env = models.CharField(max_length=50)
-    major_rep = models.CharField(max_length=50)
-    common_occ = models.CharField(max_length=50)
-    date_posted = models.DateTimeField(default=timezone.now)
+	major_rep = models.CharField(max_length=50)
+	common_occ = models.CharField(max_length=50)
+	date_posted = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
 		return self.external_env

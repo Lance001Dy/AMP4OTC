@@ -95,14 +95,13 @@ WSGI_APPLICATION = 'AMP4OTC.wsgi.application'
 # How to setup a postgres database
 #   Link: https://www.tecmint.com/install-postgresql-and-pgadmin-in-ubuntu/
 # Searching or ways to fecth data form DataBase 
-#   https://www.sqlitetutorial.net/sqlite-python/sqlite-python-select/
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'testdb',
+        'NAME': 'ampdatabase',
                 
-         'USER': 'postgre2s',
+         'USER': 'postgres',
 
          'PASSWORD': 'root',
 
@@ -110,7 +109,7 @@ DATABASES = {
 
          'PORT': '5432',
     }
-}
+} 
 
 
 # Password validation
